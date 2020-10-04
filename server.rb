@@ -34,15 +34,30 @@ loop do
 
   method, path, params, http_version = parse_request(request_line)
 
+  client.puts "HTTP/1.0 200 OK" # status code
+  client.puts "Content-Type: text/html"
+  client.puts 
+  client.puts "<html>"
+  client.puts "<body>"
+  client.puts "<pre>"
+  client.puts method
+  client.puts path
+  client.puts params
+  client.puts "</pre>"
+
   puts request_line
 
+  client.puts "<h1>Rolls!</h1>"
   rolls = params['rolls'].to_i
   sides = params['sides'].to_i
 
   rolls.times do 
     roll = rand(sides) + 1
-    client.puts roll
+    client.puts "<p>", roll, "</p>"
   end
+
+  client.puts "</body>"
+  client.puts "</html>"
 
   client.close  
 end
