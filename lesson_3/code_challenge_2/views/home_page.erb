@@ -1,0 +1,11 @@
+<h1> Users and Interests </h1>
+
+<ul>
+	<% @names.each do |name| %>
+		<h3>
+			<a href="/users/<%=name%>">
+				<%=name.capitalize%>
+			</a>	
+		</h3>
+	<% end %>
+</ul>
